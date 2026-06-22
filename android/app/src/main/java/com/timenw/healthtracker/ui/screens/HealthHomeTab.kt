@@ -18,7 +18,7 @@ import com.timenw.healthtracker.ui.components.EmptyStateView
 import java.text.SimpleDateFormat
 import java.util.*
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun HealthHomeTab(
     summary: DailyHealthSummary,
@@ -82,7 +82,7 @@ fun HealthHomeTab(
                                             style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                     }
                                 }
-                                Text(text = formatter.format(Date(record.timestamp)),
+                                Text(text = record.date,
                                     style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 IconButton(onClick = { onRemoveRecord(record.id) }) {
                                     Icon(Icons.Default.Delete, contentDescription = "删除", tint = MaterialTheme.colorScheme.error)
@@ -112,7 +112,7 @@ fun HealthHomeTab(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun HealthRecordDialog(onDismiss: () -> Unit, onSave: (HealthRecord) -> Unit) {
     var systolic by remember { mutableStateOf("") }
